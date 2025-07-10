@@ -1,3 +1,154 @@
 {
-  "typescript.tsserver.experimental.enableProjectDiagnostics": true
+  // VS Code 设置 - Gemini CLI 开发环境优化
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+  
+  // TypeScript 设置
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.suggest.autoImports": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.preferences.includePackageJsonAutoImports": "auto",
+  
+  // 调试设置
+  "debug.allowBreakpointsEverywhere": true,
+  "debug.inlineValues": "auto",
+  "debug.showInStatusBar": "always",
+  "debug.toolBarLocation": "floating",
+  
+  // 搜索和文件设置
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/bundle": true,
+    "**/.git": true,
+    "**/coverage": true,
+    "**/logs": true
+  },
+  
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/.git": true,
+    "**/coverage": true
+  },
+  
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/dist/**": true,
+    "**/build/**": true,
+    "**/bundle/**": true,
+    "**/.git/**": true,
+    "**/coverage/**": true
+  },
+  
+  // JavaScript/TypeScript 代码格式化
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  
+  // ESLint 设置
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact", 
+    "typescript",
+    "typescriptreact"
+  ],
+  "eslint.workingDirectories": [
+    "packages/cli",
+    "packages/core"
+  ],
+  
+  // Prettier 设置
+  "prettier.requireConfig": true,
+  "prettier.useEditorConfig": false,
+  
+  // 针对特定文件类型的设置
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  
+  // Terminal 设置
+  "terminal.integrated.defaultProfile.osx": "bash",
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "terminal.integrated.env.osx": {
+    "DEBUG": "1",
+    "GEMINI_SANDBOX": "false"
+  },
+  "terminal.integrated.env.linux": {
+    "DEBUG": "1", 
+    "GEMINI_SANDBOX": "false"
+  },
+  "terminal.integrated.env.windows": {
+    "DEBUG": "1",
+    "GEMINI_SANDBOX": "false"
+  },
+  
+  // 测试设置
+  "vitest.enable": true,
+  "vitest.commandLine": "npm run test",
+  
+  // Git 设置
+  "git.ignoreLimitWarning": true,
+  "git.autofetch": true,
+  
+  // 工作区特定设置
+  "npm.packageManager": "npm",
+  "npm.enableScriptExplorer": true,
+  
+  // 扩展推荐提示
+  "extensions.ignoreRecommendations": false,
+  
+  // 代码编辑器增强
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
+  "editor.minimap.enabled": true,
+  "editor.wordWrap": "bounded",
+  "editor.wordWrapColumn": 100,
+  "editor.rulers": [80, 100],
+  
+  // 问题面板设置
+  "problems.showCurrentInStatus": true,
+  "problems.sortOrder": "severity",
+  
+  // IntelliSense 设置
+  "editor.suggest.preview": true,
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "editor.parameterHints.enabled": true,
+  
+  // 文件关联
+  "files.associations": {
+    "*.tsx": "typescriptreact",
+    "*.ts": "typescript",
+    "*.js": "javascript", 
+    "*.jsx": "javascriptreact"
+  }
 }
