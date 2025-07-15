@@ -4,19 +4,22 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { describe, it, expect, vi, beforeEach, afterAll } from 'vitest';
+import { GoogleGenAI } from '@google/genai';
+import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { createCodeAssistContentGenerator } from '../code_assist/codeAssist.js';
+import { Config } from '../config/config.js';
 import {
-  createContentGenerator,
   AuthType,
+  createContentGenerator,
   createContentGeneratorConfig,
 } from './contentGenerator.js';
-import { createCodeAssistContentGenerator } from '../code_assist/codeAssist.js';
-import { GoogleGenAI } from '@google/genai';
 import * as modelCheck from './modelCheck.js';
 
 vi.mock('../code_assist/codeAssist.js');
 vi.mock('@google/genai');
 vi.mock('./modelCheck.js');
+
+const mockConfig = {} as unknown as Config;
 
 describe('createContentGenerator', () => {
   it('should create a CodeAssistContentGenerator', async () => {
@@ -24,10 +27,13 @@ describe('createContentGenerator', () => {
     vi.mocked(createCodeAssistContentGenerator).mockResolvedValue(
       mockGenerator as never,
     );
-    const generator = await createContentGenerator({
-      model: 'test-model',
-      authType: AuthType.LOGIN_WITH_GOOGLE,
-    });
+    const generator = await createContentGenerator(
+      {
+        model: 'test-model',
+        authType: AuthType.LOGIN_WITH_GOOGLE,
+      },
+      mockConfig,
+    );
     expect(createCodeAssistContentGenerator).toHaveBeenCalled();
     expect(generator).toBe(mockGenerator);
   });
@@ -37,11 +43,14 @@ describe('createContentGenerator', () => {
       models: {},
     } as unknown;
     vi.mocked(GoogleGenAI).mockImplementation(() => mockGenerator as never);
-    const generator = await createContentGenerator({
-      model: 'test-model',
-      apiKey: 'test-api-key',
-      authType: AuthType.USE_GEMINI,
-    });
+    const generator = await createContentGenerator(
+      {
+        model: 'test-model',
+        apiKey: 'test-api-key',
+        authType: AuthType.USE_GEMINI,
+      },
+      mockConfig,
+    );
     expect(GoogleGenAI).toHaveBeenCalledWith({
       apiKey: 'test-api-key',
       vertexai: undefined,
