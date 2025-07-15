@@ -23,6 +23,7 @@ import { DEFAULT_GEMINI_FLASH_MODEL } from '../config/models.js';
 import { FileDiscoveryService } from '../services/fileDiscoveryService.js';
 import { setSimulate429 } from '../utils/testUtils.js';
 import { tokenLimit } from './tokenLimits.js';
+import * as modelCheck from './modelCheck.js';
 
 // --- Mocks ---
 const mockChatCreateFn = vi.fn();
@@ -65,6 +66,7 @@ vi.mock('../telemetry/index.js', () => ({
   logApiResponse: vi.fn(),
   logApiError: vi.fn(),
 }));
+vi.mock('./modelCheck.js');
 
 describe('findIndexAfterFraction', () => {
   const history: Content[] = [
@@ -118,6 +120,9 @@ describe('Gemini Client (client.ts)', () => {
   let client: GeminiClient;
   beforeEach(async () => {
     vi.resetAllMocks();
+    vi.spyOn(modelCheck, 'getEffectiveModel').mockImplementation(
+      async (apiKey, model) => model,
+    );
 
     // Disable 429 simulation for tests
     setSimulate429(false);

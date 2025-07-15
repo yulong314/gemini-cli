@@ -12,9 +12,11 @@ import {
 } from './contentGenerator.js';
 import { createCodeAssistContentGenerator } from '../code_assist/codeAssist.js';
 import { GoogleGenAI } from '@google/genai';
+import * as modelCheck from './modelCheck.js';
 
 vi.mock('../code_assist/codeAssist.js');
 vi.mock('@google/genai');
+vi.mock('./modelCheck.js');
 
 describe('createContentGenerator', () => {
   it('should create a CodeAssistContentGenerator', async () => {
@@ -61,6 +63,9 @@ describe('createContentGeneratorConfig', () => {
     vi.resetModules();
     // Restore process.env before each test
     process.env = { ...originalEnv };
+    vi.spyOn(modelCheck, 'getEffectiveModel').mockImplementation(
+      async (apiKey, model) => model,
+    );
   });
 
   afterAll(() => {

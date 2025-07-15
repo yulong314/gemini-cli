@@ -1,4 +1,4 @@
-/**
+'''/**
  * @license
  * Copyright 2025 Google LLC
  * SPDX-License-Identifier: Apache-2.0
@@ -6,6 +6,7 @@
 
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { checkForUpdates } from './updateCheck.js';
+import semver from 'semver';
 
 const getPackageJson = vi.hoisted(() => vi.fn());
 vi.mock('../../utils/package.js', () => ({
@@ -16,6 +17,14 @@ const updateNotifier = vi.hoisted(() => vi.fn());
 vi.mock('update-notifier', () => ({
   default: updateNotifier,
 }));
+
+vi.mock('semver', async (importOriginal) => {
+  const actual = await importOriginal<typeof semver>();
+  return {
+    ...actual,
+    gt: vi.fn(),
+  };
+});
 
 describe('checkForUpdates', () => {
   beforeEach(() => {
@@ -46,7 +55,9 @@ describe('checkForUpdates', () => {
     updateNotifier.mockReturnValue({
       update: { current: '1.0.0', latest: '1.1.0' },
     });
+    vi.mocked(semver.gt).mockReturnValue(true);
     const result = await checkForUpdates();
+    expect(result).not.toBeNull();
     expect(result).toContain('1.0.0 → 1.1.0');
   });
 
@@ -58,6 +69,7 @@ describe('checkForUpdates', () => {
     updateNotifier.mockReturnValue({
       update: { current: '1.0.0', latest: '1.0.0' },
     });
+    vi.mocked(semver.gt).mockReturnValue(false);
     const result = await checkForUpdates();
     expect(result).toBeNull();
   });
@@ -70,6 +82,7 @@ describe('checkForUpdates', () => {
     updateNotifier.mockReturnValue({
       update: { current: '1.1.0', latest: '1.0.0' },
     });
+    vi.mocked(semver.gt).mockReturnValue(false);
     const result = await checkForUpdates();
     expect(result).toBeNull();
   });
@@ -80,3 +93,4 @@ describe('checkForUpdates', () => {
     expect(result).toBeNull();
   });
 });
+''

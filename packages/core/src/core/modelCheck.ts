@@ -40,7 +40,7 @@ export async function getEffectiveModel(
   });
 
   const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 2000); // 500ms timeout for the request
+  const timeoutId = setTimeout(() => controller.abort(), 5000); // 5s timeout for the request
 
   try {
     const response = await fetch(endpoint, {

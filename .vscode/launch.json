@@ -4,42 +4,32 @@
   "configurations": [
     {
       "type": "node",
-      "request": "launch", 
+      "request": "launch",
       "name": "🚀 Debug Gemini CLI (Main)",
       "program": "${workspaceFolder}/scripts/start.js",
-      "skipFiles": [
-        "<node_internals>/**",
-        "**/node_modules/**"
-      ],
+      "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "env": {
         "GEMINI_SANDBOX": "false",
         "DEBUG": "1"
       },
-      "runtimeArgs": [
-        "--enable-source-maps"
-      ],
+      "runtimeArgs": ["--enable-source-maps"],
       "autoAttachChildProcesses": true,
       "resolveSourceMapLocations": [
         "${workspaceFolder}/**",
         "!**/node_modules/**"
       ],
-      "outFiles": [
-        "${workspaceFolder}/packages/**/dist/**/*.js"
-      ],
+      "outFiles": ["${workspaceFolder}/packages/**/dist/**/*.js"],
       "preLaunchTask": "🔨 Build All Packages"
     },
     {
       "type": "node",
       "request": "launch",
       "name": "🐞 Debug CLI Direct (Fast)",
-      "program": "${workspaceFolder}/packages/cli/dist/index.js", 
+      "program": "${workspaceFolder}/packages/cli/dist/index.js",
       "args": [],
-      "skipFiles": [
-        "<node_internals>/**",
-        "**/node_modules/**"
-      ],
+      "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "env": {
@@ -49,12 +39,8 @@
         "CLI_VERSION": "0.1.5",
         "DEV": "true"
       },
-      "runtimeArgs": [
-        "--enable-source-maps"
-      ],
-      "outFiles": [
-        "${workspaceFolder}/packages/**/dist/**/*.js"
-      ],
+      "runtimeArgs": ["--enable-source-maps"],
+      "outFiles": ["${workspaceFolder}/packages/**/dist/**/*.js"],
       "preLaunchTask": "🔨 Build All Packages"
     },
     {
@@ -71,48 +57,39 @@
       }
     },
     {
-      "type": "node", 
+      "type": "node",
       "request": "launch",
       "name": "🔧 Debug Core Package Only",
       "program": "${workspaceFolder}/packages/core/dist/index.js",
-      "skipFiles": [
-        "<node_internals>/**", 
-        "**/node_modules/**"
-      ],
+      "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "env": {
         "DEBUG": "1"
       },
-      "runtimeArgs": [
-        "--enable-source-maps"
-      ],
-      "outFiles": [
-        "${workspaceFolder}/packages/**/dist/**/*.js"
-      ],
+      "runtimeArgs": ["--enable-source-maps"],
+      "outFiles": ["${workspaceFolder}/packages/**/dist/**/*.js"],
       "preLaunchTask": "🔧 Build Core Package"
     },
     {
       "type": "node",
-      "request": "launch", 
+      "request": "launch",
       "name": "🧪 Debug Specific Test File",
       "runtimeExecutable": "npm",
       "runtimeArgs": [
         "run",
         "test",
-        "-w", "packages", 
+        "-w",
+        "packages",
         "--",
         "--inspect-brk=9229",
         "--no-file-parallelism",
         "${input:testFile}"
       ],
       "cwd": "${workspaceFolder}",
-      "console": "integratedTerminal", 
+      "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
-      "skipFiles": [
-        "<node_internals>/**",
-        "**/node_modules/**"
-      ],
+      "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
       "env": {
         "DEBUG": "1"
       }
@@ -121,17 +98,9 @@
       "type": "node",
       "request": "launch",
       "name": "🌐 Debug E2E Integration Tests",
-      "runtimeExecutable": "npm", 
-      "runtimeArgs": [
-        "run", 
-        "test:e2e",
-        "--",
-        "--verbose"
-      ],
-      "skipFiles": [
-        "<node_internals>/**",
-        "**/node_modules/**"  
-      ],
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "test:e2e", "--", "--verbose"],
+      "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "env": {
@@ -144,50 +113,35 @@
       "request": "attach",
       "name": "🔗 Attach to Running Process",
       "port": 9229,
-      "skipFiles": [
-        "<node_internals>/**",
-        "**/node_modules/**"
-      ],
+      "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
       "localRoot": "${workspaceFolder}/packages",
       "remoteRoot": "/usr/local/share/npm-global/lib/node_modules/@gemini-cli",
       "sourceMaps": true,
-      "outFiles": [
-        "${workspaceFolder}/**/*.js"
-      ]
+      "outFiles": ["${workspaceFolder}/**/*.js"]
     },
     {
       "type": "node",
       "request": "launch",
       "name": "🔍 Debug Tool System",
       "program": "${workspaceFolder}/packages/core/dist/tools/tool-registry.js",
-      "skipFiles": [
-        "<node_internals>/**",
-        "**/node_modules/**"
-      ],
+      "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "env": {
         "DEBUG": "1"
       },
-      "runtimeArgs": [
-        "--enable-source-maps"
-      ],
-      "outFiles": [
-        "${workspaceFolder}/packages/**/dist/**/*.js"
-      ],
+      "runtimeArgs": ["--enable-source-maps"],
+      "outFiles": ["${workspaceFolder}/packages/**/dist/**/*.js"],
       "preLaunchTask": "🔧 Build Core Package"
     },
     {
-      "type": "node", 
+      "type": "node",
       "request": "launch",
       "name": "⚡ Debug with Custom Args",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "start"],
       "args": ["${input:customArgs}"],
-      "skipFiles": [
-        "<node_internals>/**",
-        "**/node_modules/**"
-      ],
+      "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "env": {
@@ -200,32 +154,25 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "🚫 Debug Non-Interactive Mode", 
+      "name": "🚫 Debug Non-Interactive Mode",
       "program": "${workspaceFolder}/packages/cli/dist/src/nonInteractiveCli.js",
       "args": ["${input:nonInteractiveCommand}"],
-      "skipFiles": [
-        "<node_internals>/**",
-        "**/node_modules/**"
-      ],
+      "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "env": {
         "DEBUG": "1",
         "GEMINI_SANDBOX": "false"
       },
-      "runtimeArgs": [
-        "--enable-source-maps"
-      ],
-      "outFiles": [
-        "${workspaceFolder}/packages/**/dist/**/*.js"
-      ],
+      "runtimeArgs": ["--enable-source-maps"],
+      "outFiles": ["${workspaceFolder}/packages/**/dist/**/*.js"],
       "preLaunchTask": "🖥️ Build CLI Package"
     }
   ],
   "inputs": [
     {
       "id": "testFile",
-      "type": "promptString", 
+      "type": "promptString",
       "description": "输入要调试的测试文件路径",
       "default": "${workspaceFolder}/packages/cli/src/ui/components/LoadingIndicator.test.tsx"
     },
@@ -242,7 +189,7 @@
       "default": ""
     },
     {
-      "id": "nonInteractiveCommand", 
+      "id": "nonInteractiveCommand",
       "type": "promptString",
       "description": "输入非交互式命令",
       "default": "help"
@@ -251,9 +198,7 @@
   "compounds": [
     {
       "name": "🚀 Debug Full Stack",
-      "configurations": [
-        "🚀 Debug Gemini CLI (Main)"
-      ],
+      "configurations": ["🚀 Debug Gemini CLI (Main)"],
       "stopAll": true
     }
   ]

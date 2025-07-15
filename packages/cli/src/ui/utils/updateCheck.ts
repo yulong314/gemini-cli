@@ -9,6 +9,10 @@ import semver from 'semver';
 import { getPackageJson } from '../../utils/package.js';
 
 export async function checkForUpdates(): Promise<string | null> {
+  if (process.env.GEMINI_CLI_DISABLE_UPDATE_CHECK === 'true') {
+    return null;
+  }
+
   try {
     const packageJson = await getPackageJson();
     if (!packageJson || !packageJson.name || !packageJson.version) {

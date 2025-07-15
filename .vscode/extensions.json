@@ -1,0 +1,56 @@
+{
+  // VS Code 扩展推荐 - Gemini CLI 开发环境
+  "recommendations": [
+    // TypeScript/JavaScript 开发必备
+    "ms-vscode.vscode-typescript-next",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+
+    // 调试和测试
+    "ms-vscode.js-debug",
+    "vitest.explorer",
+
+    // React 开发支持
+    "ms-vscode.vscode-react-extension-pack",
+    "bradlc.vscode-tailwindcss",
+
+    // Git 增强
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+
+    // 代码质量和辅助
+    "streetsidesoftware.code-spell-checker",
+    "usernamehw.errorlens",
+    "christian-kohler.path-intellisense",
+    "christian-kohler.npm-intellisense",
+
+    // Markdown 支持
+    "yzhang.markdown-all-in-one",
+    "davidanson.vscode-markdownlint",
+
+    // 主题和 UI 增强
+    "pkief.material-icon-theme",
+    "github.github-vscode-theme",
+
+    // 开发工具
+    "ms-vscode.hexeditor",
+    "formulahendry.auto-rename-tag",
+    "ms-vscode.vscode-json",
+
+    // Terminal 增强
+    "ms-vscode.remote-repositories",
+
+    // Docker 支持（用于沙箱调试）
+    "ms-azuretools.vscode-docker",
+
+    // 其他有用扩展
+    "gruntfuggly.todo-tree",
+    "alefragnani.bookmarks",
+    "ms-vscode.remote-containers"
+  ],
+  "unwantedRecommendations": [
+    // 避免冲突的扩展
+    "ms-vscode.vscode-typescript",
+    "hookyqr.beautify"
+  ]
+}
